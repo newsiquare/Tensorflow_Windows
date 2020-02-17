@@ -1,10 +1,27 @@
 安裝Tensorflow
 
-參考https://zhuanlan.zhihu.com/p/75815405
-配置
+參考https://zhuanlan.zhihu.com/p/75815405，原作者配置如下~
 -Anaconda
 -Python3.6.8
 -Tensorflow-gpu-1.14.0
 -CUDA 10.0
 -cuDNN 7.4.2(1.13.0版本开始支持python3.7和CUDA 10、TensorRT 5.0)
 
+安裝 CUDA 10.0
+https://developer.nvidia.com/cuda-toolkit-archive
+
+確認以下Path有自動出現
+CUDA_PATH
+CUDA_PATH_V10.0
+
+安装完成後檢查cuda的版本，成功出現版本10.0
+nvcc -V
+
+
+下解且解壓縮 CuDNN 7.4.2
+https://developer.nvidia.com/rdp/cudnn-archive
+
+複製CuDNN/cuda資料夾之下面三個檔案到 CUDA Toolkit 目錄 (CUDA我是預設目錄安裝的) 
+<cuDNN路徑下>\cuda\bin\cudnn64_7.dll 到 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\bin.
+<cuDNN路徑下>\cuda\include\cudnn.h   到 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\include.
+<cuDNN路徑下>\cuda\lib\x64\cudnn.lib 到 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\lib\x64.
