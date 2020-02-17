@@ -2,9 +2,9 @@
 
 參考https://zhuanlan.zhihu.com/p/75815405
 配置
-Anaconda
-Python3.6.8
-Tensorflow-gpu-1.14.0
-CUDA 10.0
-cuDNN 7.4.2(1.13.0版本开始支持python3.7和CUDA 10、TensorRT 5.0)
+-Anaconda
+-Python3.6.8
+-Tensorflow-gpu-1.14.0
+-CUDA 10.0
+-cuDNN 7.4.2(1.13.0版本开始支持python3.7和CUDA 10、TensorRT 5.0)
 
