@@ -33,3 +33,68 @@ activate py37_tensorflowgpu1140
 
 安裝 Tensorflow-gpu
 conda install tensorflow-gpu==1.14.0
+
+安裝 paddlepaddle
+(ref: https://www.paddlepaddle.org.cn/)
+conda install paddlepaddle-gpu cudatoolkit=10.0
+
+安裝失敗，結果如下
+Collecting package metadata (current_repodata.json): done
+Solving environment: failed with current_repodata.json, will retry with next repodata source.
+Initial quick solve with frozen env failed.  Unfreezing env and trying again.
+Solving environment: failed with current_repodata.json, will retry with next repodata source.
+Collecting package metadata (repodata.json): done
+Solving environment: failed
+Initial quick solve with frozen env failed.  Unfreezing env and trying again.
+Solving environment: failed
+
+UnsatisfiableError: The following specifications were found to be incompatible with a past
+explicit spec that is not an explicit spec in this operation (cudnn):
+
+  - paddlepaddle-gpu -> cudnn[version='>=7.3,<7.4']
+
+The following specifications were found to be incompatible with each other:
+Package cudnn conflicts for:
+defaults/win-64::cudnn==7.6.5=cuda10.0_0
+defaults/noarch::tensorflow-estimator==1.14.0=py_0 -> tensorflow-base[version='>=1.14.0,<1.15.0a0'] -> cudnn[version='>=7.1.4,<8.0a0,>=7.3.1,<8.0a0']
+defaults/win-64::tensorflow-base==1.14.0=gpu_py37h55fc52a_0 -> cudnn[version='>=7.1.4,<8.0a0,>=7.3.1,<8.0a0']
+defaults/win-64::tensorflow-gpu==1.14.0=h0d30ee6_0 -> tensorflow==1.14.0 -> cudnn[version='>=7.1.4,<8.0a0,>=7.3.1,<8.0a0']
+defaults/win-64::tensorflow==1.14.0=gpu_py37h5512b17_0 -> cudnn[version='>=7.1.4,<8.0a0,>=7.3.1,<8.0a0']
+
+看樣子應該是CuDNN太新，重新下載CuDNN 7.3.1
+同樣出現相同問題
+Collecting package metadata (current_repodata.json): done
+Solving environment: failed with current_repodata.json, will retry with next repodata source.
+Initial quick solve with frozen env failed.  Unfreezing env and trying again.
+Solving environment: failed with current_repodata.json, will retry with next repodata source.
+Collecting package metadata (repodata.json): done
+....
+
+主要問題就是 Solving environment: failed
+后来发现是镜像的问题，把清华的源改成中科大的
+先列出鏡像channel
+conda config --get channels
+
+出現
+--add channels 'defaults'   # lowest priority
+--add channels 'https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/'
+--add channels 'https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/'
+--add channels 'https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/'   # highest priority
+
+刪除上述
+conda config --remove channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --remove channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+conda config --remove channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/   # highest priority
+
+重新安裝，依然失敗
+因此改用pip，參考https://www.paddlepaddle.org.cn/
+python3 -m pip install paddlepaddle-gpu==1.6.3.post107 -i https://mirror.baidu.com/pypi/simple
+
+驗證是否成功
+python
+import paddle.fluid
+paddle.fluid.install_check.run_check()
+
+出現下述，代表成功安裝 paddlepaddle
+>> Your Paddle Fluid works well on MUTIPLE GPU or CPU.
+>> Your Paddle Fluid is installed successfully! Let's start deep Learning with Paddle Fluid now
