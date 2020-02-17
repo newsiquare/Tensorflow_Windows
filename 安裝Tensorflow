@@ -10,7 +10,7 @@
 安裝 CUDA 10.0
 https://developer.nvidia.com/cuda-toolkit-archive
 
-確認以下Path有自動出現
+確認以下Path有自動加入
 CUDA_PATH
 CUDA_PATH_V10.0
 
@@ -25,3 +25,11 @@ https://developer.nvidia.com/rdp/cudnn-archive
 <cuDNN路徑下>\cuda\bin\cudnn64_7.dll 到 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\bin.
 <cuDNN路徑下>\cuda\include\cudnn.h   到 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\include.
 <cuDNN路徑下>\cuda\lib\x64\cudnn.lib 到 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\lib\x64.
+
+啟動Anaconda並設定新環境py37_tensorflowgpu1140
+
+激活py37_tensorflowgpu1140
+activate py37_tensorflowgpu1140
+
+安裝 Tensorflow-gpu
+conda install tensorflow-gpu==1.14.0
