@@ -92,9 +92,14 @@ python3 -m pip install paddlepaddle-gpu==1.6.3.post107 -i https://mirror.baidu.c
 
 驗證是否成功
 python
-import paddle.fluid
-paddle.fluid.install_check.run_check()
+>import paddle.fluid
+>paddle.fluid.install_check.run_check()
 
-出現下述，代表成功安裝 paddlepaddle
+出現下述代表，成功安裝 paddlepaddle
 >> Your Paddle Fluid works well on MUTIPLE GPU or CPU.
 >> Your Paddle Fluid is installed successfully! Let's start deep Learning with Paddle Fluid now
+
+
+安裝 openCV (方可 import cv2 )
+(參考 http://asahinow.blogspot.com/2019/03/windows-anaconda-python-opencv.html)
+conda install -c menpo opencv
